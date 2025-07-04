@@ -20,7 +20,3 @@ $string['addmorebooks']     = 'Add more books';
 
 $string['deletebook']       = 'Delete this book';
 $string['markdelete']       = 'Mark for deletion';
-
-// Capability descriptions (optional)
-$string['books_on_offer:addinstance']   = 'Add a new Books on Offer block';
-$string['books_on_offer:myaddinstance'] = 'Add a Books on Offer block to My home';

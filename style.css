@@ -1,3 +1,7 @@
+.books-on-offer .card-title {
+    display: none !important;
+}
+
 .books-on-offer {
     padding: 1rem;
     background-color: #514ca0;

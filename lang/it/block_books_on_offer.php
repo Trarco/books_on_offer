@@ -20,7 +20,3 @@ $string['addmorebooks']             = 'Aggiungi altri libri';
 
 $string['deletebook']               = 'Elimina questo libro';
 $string['markdelete']               = 'Segna per eliminazione';
-
-// Descrizioni delle capability
-$string['books_on_offer:addinstance']   = 'Aggiungi un nuovo blocco Libri in Offerta';
-$string['books_on_offer:myaddinstance'] = 'Aggiungi un blocco Libri in Offerta alla mia home';
