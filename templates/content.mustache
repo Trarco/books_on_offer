@@ -1,0 +1,34 @@
+<div class="books-on-offer">
+    <div class="books-container">
+        {{#blocktitle}}
+        <h3>{{blocktitle}}</h3>
+        {{/blocktitle}}
+
+        {{#subtitle}}
+        <p class="books-subtitle">{{subtitle}}</p>
+        {{/subtitle}}
+
+        <button class="carousel-arrow carousel-prev" aria-label="Precedente">&#10094;</button>
+        <div class="carousel-wrapper">
+            <div class="books-carousel">
+                {{#books}}
+                <div class="book-card">
+                    {{#image}}
+                    <div class="book-cover-container">
+                        <img src="{{image}}" alt="{{title}}" class="book-cover">
+                    </div>
+                    {{/image}}
+
+                    <div class="book-info">
+                        <strong class="book-title">{{title}}</strong>
+                        {{#author}}
+                        <div class="book-author">{{author}}</div>
+                        {{/author}}
+                    </div>
+                </div>
+                {{/books}}
+            </div>
+        </div>
+        <button class="carousel-arrow carousel-next" aria-label="Successivo">&#10095;</button>
+    </div>
+</div>
