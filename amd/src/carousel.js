@@ -1,30 +1,68 @@
 define(['jquery'], function ($) {
     return {
         init: function () {
-            $('.carousel-wrapper').each(function () {
-                const $wrapper = $(this);
-                const $carousel = $wrapper.find('.books-carousel');
-                const $cards = $carousel.find('.book-card');
-                const $btnPrev = $wrapper.find('.carousel-prev');
-                const $btnNext = $wrapper.find('.carousel-next');
+            $('.carousel-controls').each(function () {
+                const $carousel = $(this).find('.books-carousel')[0];
+                const $cards = $(this).find('.book-card');
+                const $dotsContainer = $(this).find('.carousel-dots');
+                const $prev = $(this).find('.carousel-prev');
+                const $next = $(this).find('.carousel-next');
 
-                if ($cards.length === 0) return;
+                const perPage = () => {
+                    const w = $(window).width();
+                    if (w < 576) return 1;
+                    if (w < 992) return 2;
+                    return 4;
+                };
 
-                const cardWidth = $cards.outerWidth(true); // include margin
-                let currentIndex = 0;
-                const maxIndex = $cards.length - 4;
+                const pages = () => Math.ceil($cards.length / perPage());
 
-                $btnNext.on('click', function () {
-                    currentIndex++;
-                    if (currentIndex > maxIndex) currentIndex = 0;
-                    $carousel.animate({ scrollLeft: cardWidth * currentIndex }, 300);
+                let current = 0;
+
+                const scrollTo = (index) => {
+                    const cardWidth = $cards[0].offsetWidth + parseInt(getComputedStyle($cards[0]).marginRight || 16);
+                    $carousel.scrollTo({ left: index * cardWidth * perPage(), behavior: 'smooth' });
+                    $dotsContainer.find('.dot').removeClass('active');
+                    $dotsContainer.find('.dot').eq(index).addClass('active');
+                };
+
+                const updateDots = () => {
+                    $dotsContainer.empty();
+                    for (let i = 0; i < pages(); i++) {
+                        const dot = $('<span class="dot" data-index="' + i + '"></span>');
+                        if (i === 0) dot.addClass('active');
+                        dot.appendTo($dotsContainer).on('click', () => {
+                            current = i;
+                            scrollTo(current);
+                        });
+                    }
+                };
+
+                $next.on('click', () => {
+                    current = (current + 1) % pages();
+                    scrollTo(current);
                 });
 
-                $btnPrev.on('click', function () {
-                    currentIndex--;
-                    if (currentIndex < 0) currentIndex = maxIndex;
-                    $carousel.animate({ scrollLeft: cardWidth * currentIndex }, 300);
+                $prev.on('click', () => {
+                    current = (current - 1 + pages()) % pages();
+                    scrollTo(current);
                 });
+
+                let startX = 0;
+                $($carousel).on('touchstart', e => startX = e.originalEvent.touches[0].clientX);
+                $($carousel).on('touchend', e => {
+                    const delta = e.originalEvent.changedTouches[0].clientX - startX;
+                    if (delta < -30) $next.click();
+                    else if (delta > 30) $prev.click();
+                });
+
+                $(window).on('resize', () => {
+                    current = 0;
+                    updateDots();
+                    scrollTo(current);
+                });
+
+                updateDots();
             });
         }
     };
