@@ -82,11 +82,11 @@
 }
 
 .carousel-prev {
-    left: 0;
+    left: 12%;
 }
 
 .carousel-next {
-    right: 0;
+    right: 12%;
 }
 
 /* --- Pagination Dots --- */
