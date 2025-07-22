@@ -55,6 +55,10 @@
     background-color: #5f54a4;
 }
 
+.book-card a {
+    color: inherit;
+}
+
 .book-cover-container {
     width: 100%;
     margin-bottom: 0.5rem;
@@ -87,6 +91,23 @@
 
 .carousel-next {
     right: 12%;
+}
+
+/* --- Book Details --- */
+.book-button {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 12px;
+    background-color: #5f54a4;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    border: 2px solid #514ca0;
+}
+
+.book-button:hover {
+    background-color: #514ca0;
 }
 
 /* --- Pagination Dots --- */
@@ -127,8 +148,11 @@
 
 @media (max-width: 576px) {
     .book-card {
-        width: calc(100% - 2rem);
-        /* 1 per row */
+        width: calc(100%);
+    }
+
+    .books-on-offer h3 {
+        font-size: 1rem;
     }
 
     .carousel-dots {

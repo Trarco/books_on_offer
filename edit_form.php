@@ -29,14 +29,14 @@ class block_books_on_offer_edit_form extends block_edit_form
         ]);
         $repeatarray[] = $mform->createElement('text', 'config_booktitle', get_string('booktitle', 'block_books_on_offer'), ['size' => '60']);
         $repeatarray[] = $mform->createElement('text', 'config_bookauthor', get_string('bookauthor', 'block_books_on_offer'), ['size' => '60']);
+        $repeatarray[] = $mform->createElement('text', 'config_bookurl', get_string('bookurl', 'block_books_on_offer'), ['size' => '60']);
 
         $repeateloptions = [];
         $repeateloptions['config_bookimage']['type'] = PARAM_RAW;
         $repeateloptions['config_booktitle']['type'] = PARAM_TEXT;
         $repeateloptions['config_bookauthor']['type'] = PARAM_TEXT;
+        $repeateloptions['config_bookurl']['type'] = PARAM_URL;
 
-        // Ultimo parametro 'config_' permette il salvataggio corretto in $this->config
-        // Determina il numero di elementi già presenti
         $repeats = 3;
         if (!empty($this->block->config->booktitle) && is_array($this->block->config->booktitle)) {
             $repeats = count($this->block->config->booktitle);
@@ -48,18 +48,30 @@ class block_books_on_offer_edit_form extends block_edit_form
     public function set_data($defaults)
     {
         global $USER;
+        $fs = get_file_storage();
 
-        // Prepara i file manager per ogni campo immagine ripetuto
-        if (!empty($defaults->config_bookimage)) {
-            foreach ($defaults->config_bookimage as $i => $unused) {
-                $draftitemid = file_get_submitted_draft_itemid("config_bookimage[$i]");
-                file_prepare_draft_area($draftitemid, $this->block->context->id, 'block_books_on_offer', 'bookimage', $i, [
+        $numbooks = 0;
+        if (!empty($defaults->config_booktitle) && is_array($defaults->config_booktitle)) {
+            $numbooks = count($defaults->config_booktitle);
+        }
+
+        for ($i = 0; $i < $numbooks; $i++) {
+            $draftitemid = file_get_submitted_draft_itemid("config_bookimage[$i]");
+
+            file_prepare_draft_area(
+                $draftitemid,
+                $this->block->context->id,
+                'block_books_on_offer',
+                'bookimage',
+                $i,
+                [
                     'subdirs' => 0,
                     'maxfiles' => 1,
                     'accepted_types' => ['image']
-                ]);
-                $defaults->{"config_bookimage[$i]"} = $draftitemid;
-            }
+                ]
+            );
+
+            $defaults->{"config_bookimage[$i]"} = $draftitemid;
         }
 
         parent::set_data($defaults);

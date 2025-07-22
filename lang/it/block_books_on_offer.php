@@ -15,6 +15,7 @@ $string['subtitle']                 = 'Sottotitolo blocco';
 $string['bookimage']                = 'Immagine del libro';
 $string['booktitle']                = 'Titolo del libro';
 $string['bookauthor']               = 'Autore del libro';
+$string['bookurl']                  = 'URL del libro';
 
 $string['addmorebooks']             = 'Aggiungi altri libri';
 

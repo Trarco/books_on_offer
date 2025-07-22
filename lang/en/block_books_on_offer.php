@@ -15,6 +15,7 @@ $string['subtitle']         = 'Block subtitle';
 $string['bookimage']        = 'Book image';
 $string['booktitle']        = 'Book title';
 $string['bookauthor']       = 'Book author';
+$string['bookurl'] = 'Book URL';
 
 $string['addmorebooks']     = 'Add more books';
 

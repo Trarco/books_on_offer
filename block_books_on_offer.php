@@ -44,9 +44,10 @@ class block_books_on_offer extends block_base
 
             foreach ($this->config->booktitle as $i => $booktitle) {
                 $author = $this->config->bookauthor[$i] ?? '[Nessun autore]';
+                $url = $this->config->bookurl[$i] ?? '';
+
                 debugging("Libro $i: titolo='$booktitle', autore='$author'", DEBUG_DEVELOPER);
 
-                // Recupera file immagine
                 $fs = get_file_storage();
                 $files = $fs->get_area_files($this->context->id, 'block_books_on_offer', 'bookimage', $i, 'itemid, filepath, filename', false);
 
@@ -69,7 +70,8 @@ class block_books_on_offer extends block_base
                 $books[] = [
                     'title' => $booktitle,
                     'author' => $author,
-                    'image' => $imageurl
+                    'image' => $imageurl,
+                    'url' => $url
                 ];
             }
         } else {

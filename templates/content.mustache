@@ -10,15 +10,20 @@
                 <div class="books-carousel" tabindex="0">
                     {{#books}}
                     <div class="book-card">
-                        {{#image}}
-                        <div class="book-cover-container">
+                        <a href="{{url}}" target="_blank" rel="noopener" class="book-cover-container">
+                            {{#image}}
                             <img src="{{image}}" alt="{{title}} di {{author}}" class="book-cover">
+                            {{/image}}
+                            <div class="book-info">
+                                <strong class="book-title">{{title}}</strong>
+                                {{#author}}<div class="book-author">{{author}}</div>{{/author}}
+                            </div>
+                        </a>
+                        {{#url}}
+                        <div class="book-link">
+                            <a href="{{url}}" target="_blank" rel="noopener" class="book-button">Vai al libro</a>
                         </div>
-                        {{/image}}
-                        <div class="book-info">
-                            <strong class="book-title">{{title}}</strong>
-                            {{#author}}<div class="book-author">{{author}}</div>{{/author}}
-                        </div>
+                        {{/url}}
                     </div>
                     {{/books}}
                 </div>
