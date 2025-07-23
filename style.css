@@ -43,10 +43,11 @@
 
 /* --- Book Card --- */
 .book-card {
+    display: grid;
+    align-content: space-between;
     flex: 0 0 auto;
     scroll-snap-align: start;
     width: calc(25% - 1rem);
-    /* Default: 4 per row */
     text-align: center;
     padding: 1em;
 }
@@ -67,6 +68,10 @@
 .book-cover {
     width: 100%;
     height: auto;
+}
+
+.book-info div {
+    margin: .5em 0;
 }
 
 /* --- Navigation Arrows --- */
@@ -96,7 +101,6 @@
 /* --- Book Details --- */
 .book-button {
     display: inline-block;
-    margin-top: 8px;
     padding: 6px 12px;
     background-color: #5f54a4;
     color: #fff;
@@ -108,6 +112,11 @@
 
 .book-button:hover {
     background-color: #514ca0;
+    cursor: pointer;
+}
+
+.book-button.disabled:hover {
+  cursor: not-allowed;
 }
 
 /* --- Pagination Dots --- */

@@ -10,20 +10,41 @@
                 <div class="books-carousel" tabindex="0">
                     {{#books}}
                     <div class="book-card">
-                        <a href="{{url}}" target="_blank" rel="noopener" class="book-cover-container">
+                        <div class="book-cover-container">
+                            {{#url}}
+                            <a href="{{url}}" target="_blank" rel="noopener">
+                                {{#image}}
+                                <img src="{{image}}" alt="{{title}} di {{author}}" class="book-cover">
+                                {{/image}}
+                            </a>
+                            {{/url}}
+                            {{^url}}
                             {{#image}}
                             <img src="{{image}}" alt="{{title}} di {{author}}" class="book-cover">
                             {{/image}}
-                            <div class="book-info">
-                                <strong class="book-title">{{title}}</strong>
-                                {{#author}}<div class="book-author">{{author}}</div>{{/author}}
-                            </div>
-                        </a>
-                        {{#url}}
-                        <div class="book-link">
-                            <a href="{{url}}" target="_blank" rel="noopener" class="book-button">Vai al libro</a>
+                            {{/url}}
                         </div>
-                        {{/url}}
+
+                        <div class="book-info">
+                            <div class="book-title">
+                                <strong>{{title}}</strong>
+                            </div>
+                            {{#author}}
+                            <div class="book-author">
+                                <span>
+                                    {{author}}
+                                </span>
+                            </div>
+                            {{/author}}
+                            <div class="book-link">
+                                {{#url}}
+                                <a href="{{url}}" target="_blank" rel="noopener" class="book-button">Vai al libro</a>
+                                {{/url}}
+                                {{^url}}
+                                <span class="book-button disabled">Non disponibile</span>
+                                {{/url}}
+                            </div>
+                        </div>
                     </div>
                     {{/books}}
                 </div>

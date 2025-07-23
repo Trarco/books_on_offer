@@ -5,7 +5,7 @@
 ## 🚀 Features
 
 - Custom block title and subtitle
-- Upload image, title, and author for each book
+- Upload image, title, author and URL for each book
 - Carousel with:
   - Arrows on desktop
   - Swipe and dots navigation on mobile/tablet

@@ -1,5 +1,17 @@
 # 📦 Changelog
 
+## [1.1.0] – 2025-07-23
+
+### Added
+- New field `Book URL` for each book entry, allowing users to link to external pages (e.g., e-commerce).
+- Support for rendering clickable book covers and a call-to-action button.
+- Template logic updated to handle books with or without URLs gracefully.
+- Button styling added for disabled state when URL is not available.
+
+### Fixed
+- Filemanager draft area now properly initialized for each repeated book image, ensuring images are visible after plugin update or cache reset.
+- HTML template corrected to avoid invalid nested `<a>` tags.
+
 ## [1.0.0] – 2025-07-11
 
 ### Added
